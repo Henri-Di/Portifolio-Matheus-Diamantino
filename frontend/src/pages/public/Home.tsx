@@ -9,10 +9,11 @@ import ContactSection from "../../components/ContactSection";
 import ContactCTASection from "../../components/ContactCTASection";
 import Footer from "../../components/Footer"; 
 import BackgroundIcons from "../../components/BackgroundIcons";
+import ButtonTop from "../../components/ButtonTop"; 
 
 const Home: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-white text-gray-900">
+    <div className="relative min-h-screen bg-white text-gray-900 overflow-hidden">
       {/* Background flutuante */}
       <BackgroundIcons />
 
@@ -42,6 +43,9 @@ const Home: React.FC = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* Botão Topo */}
+      <ButtonTop />
     </div>
   );
 };
