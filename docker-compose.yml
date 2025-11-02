@@ -55,7 +55,7 @@ services:
       MYSQL_USER: appuser
       MYSQL_PASSWORD: apppassword
     ports:
-      - "3307:3306"  # Corrigido para evitar conflito com o MySQL local
+      - "3307:3306"  
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
