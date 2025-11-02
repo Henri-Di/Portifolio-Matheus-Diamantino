@@ -37,7 +37,7 @@ O foco principal é **UI/UX**, garantindo que cada componente tenha:
 
 ### DevOps & Deploy
 - Docker + Docker Compose  
-- Deploy em [Render.com](https://www.matheusdiamantino.com/)  
+- Deploy em [Stduio M&D](https://www.matheusdiamantino.com/)  
 
 ### Controle de Versão
 - Git + GitHub  
