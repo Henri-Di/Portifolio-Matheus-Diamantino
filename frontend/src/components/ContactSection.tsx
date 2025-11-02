@@ -2,6 +2,12 @@
 import React, { JSX } from "react";
 import { FaEnvelope, FaWhatsapp, FaLinkedin, FaGithub } from "react-icons/fa";
 
+/* =====================================================
+   Lista de contatos
+   - Cada item possui nome, ícone, link e cor
+   - Descrição opcional usada como tooltip
+   - Mantém consistência visual e UX para cada plataforma
+===================================================== */
 const contactList: { 
   name: string; 
   icon: JSX.Element; 
@@ -39,10 +45,21 @@ const contactList: {
   },
 ];
 
+/* =====================================================
+   Componente ContactSection
+   - Exibe opções de contato com cards interativos
+   - Hover com animações, tooltips e transformações
+   - Call-to-action no final para engajar o usuário
+===================================================== */
 const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-16 sm:py-20 bg-gray-50 relative">
-      {/* Header */}
+      
+      {/* ---------------------
+          Header da seção
+          - Título com gradiente para destaque
+          - Descrição contextualizando o contato
+      --------------------- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
           Contato
@@ -52,7 +69,12 @@ const ContactSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Cards de contato */}
+      {/* ---------------------
+          Cards de contato
+          - Flex wrap e gap para responsividade
+          - Hover: elevação, escala, rotação e sombra
+          - Tooltip com descrição da plataforma
+      --------------------- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center gap-6 sm:gap-8">
         {contactList.map((contact, idx) => (
           <a
@@ -67,7 +89,7 @@ const ContactSection: React.FC = () => {
               hover:shadow-[0_10px_25px_rgba(0,0,0,0.2),0_0_20px_rgba(6,182,212,0.5)]
             `}
           >
-            {/* Ícone */}
+            {/* Ícone do contato */}
             <div
               className="text-4xl sm:text-5xl mb-2 transition-all duration-500 group-hover:drop-shadow-[0_0_20px_rgb(6,182,212)] group-hover:animate-pulse"
               style={{ color: contact.color }}
@@ -75,7 +97,7 @@ const ContactSection: React.FC = () => {
               {contact.icon}
             </div>
 
-            {/* Nome */}
+            {/* Nome da plataforma */}
             <span className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors duration-500">
               {contact.name}
             </span>
@@ -90,7 +112,11 @@ const ContactSection: React.FC = () => {
         ))}
       </div>
 
-      {/* Call-to-action extra */}
+      {/* ---------------------
+          Call-to-action final
+          - Incentiva a interação e contato
+          - Destaque visual na frase-chave
+      --------------------- */}
       <div className="mt-12 text-center">
         <p className="text-gray-600 text-sm sm:text-base">
           Estou sempre aberto a novas ideias e oportunidades. <span className="text-cyan-500 font-semibold">Vamos conversar!</span>

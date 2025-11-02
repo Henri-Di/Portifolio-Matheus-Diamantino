@@ -6,9 +6,10 @@ import {
 } from "react-icons/fa";
 import { SiSymfony, SiTailwindcss, SiTypescript, SiMysql, SiNginx } from "react-icons/si";
 
-/**
- * Map de tecnologias para ícones
- */
+/* =====================================================
+   Mapeamento de Tecnologias → Ícones
+   - Facilita exibir ícones correspondentes para cada tech
+===================================================== */
 const techIcons: Record<string, JSX.Element> = {
   "Tailwind CSS": <SiTailwindcss />,
   "React": <FaReact />,
@@ -26,9 +27,11 @@ const techIcons: Record<string, JSX.Element> = {
   "Definindo...": <FaTools />,
 };
 
-/**
- * Lista de projetos
- */
+/* =====================================================
+   Lista de projetos
+   - Cada objeto contém título, descrição, vídeo, link, tecnologias
+   - Frontend e Backend separados para melhor visualização
+===================================================== */
 const portfolioItems = [
   {
     title: "Sistema de Inventário - Caixa Econômica",
@@ -65,10 +68,19 @@ const portfolioItems = [
   },
 ];
 
+/* =====================================================
+   Componente PortfolioSection
+   - Exibe cards de projetos com vídeos, ícones, tecnologias
+   - Hover suave, gradientes, neon pulse e destaque de tecnologias
+===================================================== */
 const PortfolioSection: React.FC = () => {
   return (
     <section id="portfolio" className="py-16 sm:py-20 bg-gray-50">
-      {/* Header */}
+      {/* ---------------------
+          Header
+          - Gradiente no título
+          - Descrição curta centralizada
+      --------------------- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
           Meu Portifólio
@@ -78,7 +90,11 @@ const PortfolioSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Grid de projetos */}
+      {/* ---------------------
+          Grid de projetos
+          - Responsivo: 1-3 colunas dependendo da tela
+          - Cada card animado com hover e destaque neon
+      --------------------- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {portfolioItems.map((item, index) => {
           const frontendTechSorted = [...item.frontendTechnologies].sort((a, b) => a.localeCompare(b));
@@ -96,12 +112,12 @@ const PortfolioSection: React.FC = () => {
                 ${item.title === "Projeto em Construção" ? "border-dashed border-gray-400" : ""}
               `}
             >
-              {/* Neon Border simulada */}
+              {/* Neon Border simulada para cards ativos */}
               {!item.title.includes("Construção") && (
                 <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.6),0_0_30px_rgba(139,92,246,0.5)] transition-all duration-500"></div>
               )}
 
-              {/* Vídeo ou Ícone */}
+              {/* Vídeo ou ícone do projeto */}
               <div className="flex items-center justify-center overflow-hidden h-48 sm:h-56 md:h-64 bg-gray-100">
                 {item.video ? (
                   <video
@@ -117,13 +133,14 @@ const PortfolioSection: React.FC = () => {
                 )}
               </div>
 
-              {/* Overlay */}
+              {/* Overlay hover */}
               <div className={`absolute inset-0 transition-colors duration-500 rounded-2xl pointer-events-none
                 ${item.title === "Projeto em Construção" ? "bg-yellow-50/60" : "bg-black/0 group-hover:bg-black/10"}`}
               ></div>
 
-              {/* Conteúdo */}
+              {/* Conteúdo do card */}
               <div className="p-4 sm:p-6 relative z-10">
+                {/* Título e ícone de link externo */}
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 transition-all duration-500 group-hover:scale-105">
                     {item.title}
@@ -131,15 +148,15 @@ const PortfolioSection: React.FC = () => {
                   <FaExternalLinkAlt className="text-gray-400 group-hover:text-cyan-400 transition-colors duration-300" />
                 </div>
 
+                {/* Descrição e escopo do projeto */}
                 <p className="text-gray-600 text-sm sm:text-base mb-2 group-hover:text-gray-700 transition-colors duration-500">
                   {item.description}
                 </p>
-
                 <p className="text-gray-500 text-xs sm:text-sm mb-3 italic group-hover:text-gray-600 transition-colors duration-500">
                   {item.scope}
                 </p>
 
-                {/* Icons principais */}
+                {/* Ícones principais do projeto */}
                 <div className="flex space-x-3 mb-3 flex-wrap">
                   {item.icons.map((icon, idx) => (
                     <span
@@ -151,7 +168,7 @@ const PortfolioSection: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Frontend */}
+                {/* Tecnologias Frontend */}
                 {frontendTechSorted.length > 0 && (
                   <div className="mb-2">
                     <h4 className="text-gray-500 text-xs sm:text-sm font-semibold mb-1 group-hover:text-gray-600 transition-colors duration-500">
@@ -171,7 +188,7 @@ const PortfolioSection: React.FC = () => {
                   </div>
                 )}
 
-                {/* Backend */}
+                {/* Tecnologias Backend */}
                 {backendTechSorted.length > 0 && (
                   <div>
                     <h4 className="text-gray-500 text-xs sm:text-sm font-semibold mb-1 group-hover:text-gray-600 transition-colors duration-500">
@@ -191,7 +208,7 @@ const PortfolioSection: React.FC = () => {
                   </div>
                 )}
 
-                {/* Links de Demo e GitHub com Neon Pulse */}
+                {/* Links de Demo e GitHub */}
                 <div className="flex space-x-4 mt-3">
                   {item.title === "Sistema de Inventário - Caixa Econômica" ? (
                     <>

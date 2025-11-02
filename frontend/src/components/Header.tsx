@@ -12,6 +12,11 @@ import {
   FaDownload,
 } from "react-icons/fa";
 
+/* =====================================================
+   Estrutura de navegação
+   - Nome da seção, ícone e id do elemento
+   - Usado para scroll suave e destaque ativo
+===================================================== */
 interface NavItem {
   name: string;
   icon: JSX.Element;
@@ -27,11 +32,21 @@ const navItems: NavItem[] = [
   { name: "Contato", icon: <FaEnvelope />, sectionId: "contact" },
 ];
 
+/* =====================================================
+   Componente Header
+   - Navegação fixa no topo com blur e shadow
+   - Destaque de seção ativa, scroll suave e menu mobile responsivo
+===================================================== */
 const Header: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false); // Menu mobile aberto/fechado
+  const [scrolled, setScrolled] = useState(false); // Detecta scroll para sombra
+  const [activeSection, setActiveSection] = useState("home"); // Seção atualmente ativa
 
+  /* ---------------------
+      Efeito de scroll
+      - Adiciona sombra no header quando rola a página
+      - Detecta a seção ativa para destaque de navegação
+  --------------------- */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -39,7 +54,7 @@ const Header: React.FC = () => {
       navItems.forEach((item) => {
         const section = document.getElementById(item.sectionId);
         if (section) {
-          const top = section.offsetTop - 120;
+          const top = section.offsetTop - 120; // Ajuste do offset
           const bottom = top + section.offsetHeight;
           if (window.scrollY >= top && window.scrollY < bottom) {
             setActiveSection(item.sectionId);
@@ -52,8 +67,13 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* ---------------------
+      Função de scroll suave
+      - Ajusta o offset para header fixo
+      - Fecha menu mobile ao clicar
+  --------------------- */
   const handleNavClick = (sectionId: string) => {
-    const headerOffset = 80; // altura aproximada do header, ajuste se necessário
+    const headerOffset = 80; // altura aproximada do header
     if (sectionId === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -61,7 +81,6 @@ const Header: React.FC = () => {
       if (section) {
         const elementPosition = section.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
-
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     }
@@ -75,7 +94,12 @@ const Header: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center relative">
 
-        {/* Logo */}
+        {/* ---------------------
+            Logo
+            - Ícone com animação hover
+            - Nome da marca com gradiente animado
+            - Descrição da função
+        --------------------- */}
         <div className="flex flex-col">
           <div
             className="flex items-center group cursor-pointer"
@@ -91,7 +115,10 @@ const Header: React.FC = () => {
           </span>
         </div>
 
-        {/* Botão Hamburguer */}
+        {/* ---------------------
+            Botão hamburguer mobile
+            - Alterna entre menu aberto/fechado
+        --------------------- */}
         <div className="md:hidden mt-4 self-end">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -102,7 +129,10 @@ const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Overlay Mobile */}
+        {/* ---------------------
+            Overlay mobile
+            - Fecha menu ao clicar fora
+        --------------------- */}
         {menuOpen && (
           <div
             className="fixed inset-0 bg-black/30 z-40 md:hidden"
@@ -110,7 +140,12 @@ const Header: React.FC = () => {
           />
         )}
 
-        {/* Navegação */}
+        {/* ---------------------
+            Navegação principal
+            - Responsiva (desktop + mobile)
+            - Animação de entrada no mobile
+            - Destaque de seção ativa com borda e cores
+        --------------------- */}
         <nav className="md:flex md:flex-row md:items-center md:space-x-8 w-full md:w-auto z-50 relative">
           <ul
             className={`
@@ -138,7 +173,7 @@ const Header: React.FC = () => {
                     }`}
                 />
 
-                {/* Ícone */}
+                {/* Ícone da seção */}
                 <span
                   className={`text-lg sm:text-xl transition-colors duration-300
                     ${activeSection === item.sectionId ? "text-purple-neon" : "text-cyan-neon"} 
@@ -147,7 +182,7 @@ const Header: React.FC = () => {
                   {item.icon}
                 </span>
 
-                {/* Texto */}
+                {/* Nome da seção */}
                 <span
                   className={`transition-all duration-500 bg-clip-text text-transparent bg-gradient-to-r from-cyan-neon to-purple-neon
                     ${activeSection === item.sectionId ? "font-bold" : ""}
