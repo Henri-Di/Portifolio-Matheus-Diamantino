@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           <span className="text-gray-600 text-sm sm:text-base">
             &copy; {currentYear}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 font-semibold">
-              Studios M&D
+              Studio M&D
             </span>
             . Todos os direitos reservados.
           </span>
