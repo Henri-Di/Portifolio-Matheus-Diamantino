@@ -6,7 +6,10 @@ const ResumeSection: React.FC = () => {
   return (
     <section id="resume" className="py-16 sm:py-20 bg-gray-50 relative">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Título */}
+        {/* -----------------------------
+            Título da seção
+            - Gradiente neon e destaque visual
+        ----------------------------- */}
         <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
           Meu Currículo
         </h2>
@@ -14,14 +17,18 @@ const ResumeSection: React.FC = () => {
           Conheça minhas experiências, habilidades e projetos realizados. Faça o download do meu currículo completo para avaliar meu perfil profissional.
         </p>
 
-        {/* Card com destaque */}
+        {/* -----------------------------
+            Card de destaque
+            - Hover suave: escala, sombra e animação
+        ----------------------------- */}
         <div className="mt-12 relative bg-white rounded-2xl shadow-lg p-8 sm:p-12 flex flex-col items-center transform transition-all duration-500 hover:scale-105 hover:shadow-[0_15px_30px_rgba(6,182,212,0.4),0_0_20px_rgba(139,92,246,0.3)]">
           
+          {/* Ícone e descrição */}
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-            {/* Ícone */}
+            {/* Ícone de download animado */}
             <FaDownload className="text-5xl sm:text-6xl text-cyan-400 transition-transform duration-500 group-hover:animate-bounce" />
 
-            {/* Descrição */}
+            {/* Descrição do currículo */}
             <div className="text-center sm:text-left space-y-2">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
                 Currículo Profissional
@@ -32,7 +39,10 @@ const ResumeSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Botão de download */}
+          {/* -----------------------------
+              Botão de download
+              - Gradiente, hover scale e neon glow
+          ----------------------------- */}
           <a
             href="/Curriculo-Matheus-Henrique-Ribeiro-Diamantino.pdf"
             download
@@ -44,7 +54,10 @@ const ResumeSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Efeito de fundo sutil (opcional) */}
+      {/* -----------------------------
+          Efeito de fundo sutil (opcional)
+          - Blob animado, leve, sem interação
+      ----------------------------- */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 w-96 h-96 bg-gradient-to-r from-cyan-200 to-purple-300 rounded-full opacity-20 -translate-x-1/2 animate-blob"></div>
       </div>

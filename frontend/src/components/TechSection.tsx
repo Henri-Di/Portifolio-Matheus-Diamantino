@@ -9,7 +9,13 @@ import {
   SiNginx, SiNodedotjs, SiTailwindcss 
 } from "react-icons/si";
 
-// Frontend
+/**
+ * Frontend: Lista de tecnologias que entregam interfaces modernas e interativas.
+ * Cada item possui:
+ *  - ícone representativo
+ *  - cor de destaque
+ *  - descrição que aparece como tooltip (UI/UX friendly)
+ */
 const frontendTech: { name: string; icon: JSX.Element; color?: string; description?: string }[] = [
   { name: "Bootstrap", icon: <SiBootstrap />, color: "#7952B3", description: "Framework CSS responsivo e rápido" },
   { name: "CSS", icon: <FaCss3Alt />, color: "#2965F1", description: "Estilização e design de interfaces" },
@@ -21,11 +27,14 @@ const frontendTech: { name: string; icon: JSX.Element; color?: string; descripti
   { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6", description: "JavaScript tipado para segurança e escalabilidade" },
 ];
 
-// Backend
+/**
+ * Backend: Ferramentas que garantem performance, segurança e escalabilidade.
+ * Mesma lógica de frontend: ícone + cor + tooltip
+ */
 const backendTech: { name: string; icon: JSX.Element; color?: string; description?: string }[] = [
   { name: "Docker", icon: <FaDocker />, color: "#2496ED", description: "Containerização e ambientes isolados" },
   { name: "GitHub", icon: <FaGithub />, color: "#181717", description: "Controle de versão e colaboração" },
-  { name: "Laravel", icon: <FaLaravel />, color: "#FF2D20", description: "Framework PHP robusto" },
+  { name: "Laravel", icon: <FaLaravel />, color: "#FF2D20", description: "Framework PHP para aplicações robustas" },
   { name: "MySQL", icon: <SiMysql />, color: "#4479A1", description: "Banco de dados relacional" },
   { name: "Node.js", icon: <SiNodedotjs />, color: "#339933", description: "Execução de JavaScript no backend" },
   { name: "PHP", icon: <FaPhp />, color: "#777BB4", description: "Linguagem de programação backend" },
@@ -35,11 +44,18 @@ const backendTech: { name: string; icon: JSX.Element; color?: string; descriptio
   { name: "NGINX", icon: <SiNginx />, color: "#009639", description: "Servidor web e proxy reverso" },
 ];
 
-// Ordenação
+// Ordenação alfabética para melhor UX visual na grid
 frontendTech.sort((a, b) => a.name.localeCompare(b.name));
 backendTech.sort((a, b) => a.name.localeCompare(b.name));
 
 const TechSection: React.FC = () => {
+  /**
+   * Função que renderiza os cards de tecnologia
+   * Cada card possui:
+   *  - animação de fade-in sequencial
+   *  - efeito hover: scale + sombra neon
+   *  - tooltip com descrição amigável
+   */
   const renderTech = (techArray: typeof frontendTech) =>
     techArray.map((tech, idx) => (
       <div
@@ -53,6 +69,7 @@ const TechSection: React.FC = () => {
         `}
         style={{ animationDelay: `${idx * 0.05}s` }}
       >
+        {/* Ícone principal com hover neon e pulse */}
         <div
           className={`
             text-4xl sm:text-5xl mb-2 transition-all duration-500
@@ -64,9 +81,10 @@ const TechSection: React.FC = () => {
           {tech.icon}
         </div>
 
+        {/* Nome da tecnologia */}
         <span className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors duration-500 relative">
           {tech.name}
-          {/* Tooltip */}
+          {/* Tooltip amigável */}
           {tech.description && (
             <span className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {tech.description}
@@ -78,13 +96,13 @@ const TechSection: React.FC = () => {
 
   return (
     <section id="tech" className="py-16 sm:py-20 bg-gray-50 relative">
-      {/* Header */}
+      {/* Cabeçalho com título e subtítulo */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
           Tecnologias
         </h2>
         <p className="mt-2 text-gray-600 text-sm sm:text-base">
-          Ferramentas e frameworks que utilizo para criar soluções digitais modernas e escaláveis, <br/>
+          Ferramentas e frameworks que utilizo para criar soluções digitais modernas e escaláveis,
           garantindo desempenho, qualidade de código e experiências excepcionais para os usuários.
         </p>
       </div>
