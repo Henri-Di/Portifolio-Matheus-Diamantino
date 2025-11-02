@@ -1,91 +1,46 @@
-# Portfólio Desenvolvedor Fullstack
+# 🌐 Portfólio Fullstack - Matheus Diamantino
+
+Este é meu portfólio profissional fullstack, projetado para demonstrar minhas habilidades técnicas, projetos, experiências e formas de contato de forma interativa e moderna.
 
 ---
 
-## 🧾 Descrição
+## 🧾 Descrição do Projeto
 
-Este é um projeto de portfólio profissional fullstack, desenvolvido para apresentar minhas habilidades técnicas, projetos, experiências e formas de contato.
+O portfólio é uma **apresentação digital completa**, com seções detalhadas sobre:  
+- Sobre mim  
+- Tecnologias utilizadas  
+- Projetos e portfólio  
+- Currículo e experiências  
+- Contato e captação de clientes  
 
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- **Frontend:** React, TypeScript, Tailwind CSS, Vite  
-- **Backend:** PHP 8, Symfony  
-- **Banco de Dados:** MySQL  
-- **Containerização:** Docker + Docker Compose  
-- **Deploy:** Render.com
-
----
-
-## 📁 Estrutura do Projeto
-
-```
-backend/             # Aplicação Symfony (API)
-frontend/            # Aplicação React com Vite
-docker-compose.yml   # Orquestração de containers
-README.md            # Documentação principal
-.env                 # Variáveis de ambiente
-```
+O foco principal é **UI/UX**, garantindo que cada componente tenha:  
+- Layout moderno e responsivo  
+- Efeitos interativos e animações sutis  
+- Comentários claros e documentação interna  
 
 ---
 
-## 🚀 Como Executar com Docker
+## 🛠 Tecnologias Utilizadas
 
-1. Clone o repositório:
+### Frontend
+- React  
+- TypeScript  
+- Tailwind CSS + SCSS  
+- Vite  
 
-   ```bash
-   git clone https://github.com/Henri-Di/SeuRepositorio.git
-   cd SeuRepositorio
-   ```
+### Backend
+- PHP 8  
+- Symfony  
 
-2. Suba os containers:
+### Banco de Dados
+- MySQL  
 
-   ```bash
-   docker-compose up --build -d
-   ```
+### DevOps & Deploy
+- Docker + Docker Compose  
+- Deploy em [Render.com](https://www.matheusdiamantino.com/)  
 
-3. Acesse as aplicações:
-
-   - Frontend: [http://localhost:3000](http://localhost:3000)  
-   - Backend (API): [http://localhost:8000/api](http://localhost:8000/api)
-
-4. Para acompanhar os logs:
-
-   ```bash
-   docker-compose logs -f
-   ```
-
----
-
-## 🧪 Testes
-
-- Symfony:
-
-  ```bash
-  php bin/phpunit
-  ```
-
-- React (na pasta frontend):
-
-  ```bash
-  npm test
-  ```
-
----
-
-## 🔐 Autenticação
-
-- Utiliza JWT para acesso a rotas administrativas  
-- Apenas usuários com `ROLE_ADMIN` acessam `/admin`
-
----
-
-## 📤 Deploy com Render
-
-- Frontend: hospedado como Web Service (build via Vite)  
-- Backend: hospedado como Web Service Symfony (PHP-FPM)  
-- Banco de Dados: Render MySQL Cloud Database
+### Controle de Versão
+- Git + GitHub  
 
 ---
 
