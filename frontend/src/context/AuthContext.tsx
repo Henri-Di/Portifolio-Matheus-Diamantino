@@ -1,68 +1,42 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
+// src/context/AuthContext.tsx
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface UserPayload {
-  exp: number;
-  iat: number;
-  roles: string[];
-  // adicione outros campos do payload do token se precisar
-}
-
+// Tipo do contexto
 interface AuthContextType {
-  token: string | null;
-  role: string | null;
-  login: (token: string) => void;
-  logout: () => void;
   isAuthenticated: boolean;
-  isAdmin: boolean;
+  login: () => void;
+  logout: () => void;
 }
 
+// Cria o contexto
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
-  const [role, setRole] = useState<string | null>(null);
+// Componente Provider
+interface AuthProviderProps {
+  children: ReactNode;
+}
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-      try {
-        const decoded = jwtDecode<UserPayload>(storedToken);
-        setRole(decoded.roles[0] || null);
-      } catch {
-        setToken(null);
-        setRole(null);
-        localStorage.removeItem("token");
-      }
-    }
-  }, []);
+const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = (newToken: string) => {
-    localStorage.setItem("token", newToken);
-    setToken(newToken);
-    const decoded = jwtDecode<UserPayload>(newToken);
-    setRole(decoded.roles[0] || null);
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    setRole(null);
-  };
-
-  const isAuthenticated = !!token;
-  const isAdmin = role === "ROLE_ADMIN";
+  const login = () => setIsAuthenticated(true);
+  const logout = () => setIsAuthenticated(false);
 
   return (
-    <AuthContext.Provider value={{ token, role, login, logout, isAuthenticated, isAdmin }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = (): AuthContextType => {
+// Hook personalizado para usar o contexto
+export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within an AuthProvider");
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
   return context;
 };
+
+// Exporta o provider como default
+export default AuthProvider;
