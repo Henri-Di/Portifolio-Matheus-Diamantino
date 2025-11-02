@@ -71,7 +71,7 @@ const PortfolioSection: React.FC = () => {
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-          Meu Portfólio
+          Meu Portifólio
         </h2>
         <p className="mt-2 text-gray-600 text-sm sm:text-base">
           Alguns dos meus projetos recentes de desenvolvimento web
