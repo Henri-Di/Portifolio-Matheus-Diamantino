@@ -34,7 +34,7 @@ const frontendTech: { name: string; icon: JSX.Element; color?: string; descripti
 const backendTech: { name: string; icon: JSX.Element; color?: string; description?: string }[] = [
   { name: "Docker", icon: <FaDocker />, color: "#2496ED", description: "Containerização e ambientes isolados" },
   { name: "GitHub", icon: <FaGithub />, color: "#181717", description: "Controle de versão e colaboração" },
-  { name: "Laravel", icon: <FaLaravel />, color: "#FF2D20", description: "Framework PHP robusto" },
+  { name: "Laravel", icon: <FaLaravel />, color: "#FF2D20", description: "Framework PHP para aplicações robustas" },
   { name: "MySQL", icon: <SiMysql />, color: "#4479A1", description: "Banco de dados relacional" },
   { name: "Node.js", icon: <SiNodedotjs />, color: "#339933", description: "Execução de JavaScript no backend" },
   { name: "PHP", icon: <FaPhp />, color: "#777BB4", description: "Linguagem de programação backend" },
