@@ -13,9 +13,10 @@ const AboutSection: React.FC = () => {
 
       {/* Header */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-500 animate-gradient-x">
-          Sobre Mim
-        </h2>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 animate-gradient-x">
+        Sobre Mim
+      </h2> 
+
         <p className="mt-4 text-gray-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
           Um pouco sobre minha trajetória e como posso transformar sua ideia em realidade digital.
         </p>
