@@ -61,25 +61,19 @@ const portfolioItems = [
 
 const PortfolioSection: React.FC = () => {
   return (
-    <section
-      id="portfolio"
-      className="relative py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 overflow-hidden"
-    >
-      {/* Background subtle pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.06),transparent_70%)]"></div>
-
+    <section id="portfolio" className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-100">
       {/* Header */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-500 animate-gradient-x">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tracking-tight">
           Meu Portfólio
         </h2>
-        <p className="mt-4 text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-3 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
           Alguns dos meus projetos recentes de desenvolvimento web
         </p>
       </div>
 
       {/* Grid */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {portfolioItems.map((item, index) => {
           const frontendTechSorted = [...item.frontendTechnologies].sort((a, b) => a.localeCompare(b));
           const backendTechSorted = [...item.backendTechnologies].sort((a, b) => a.localeCompare(b));
@@ -90,19 +84,24 @@ const PortfolioSection: React.FC = () => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`relative group block rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm border border-gray-200/70 hover:border-cyan-400 shadow-sm hover:shadow-xl transform transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:scale-[1.02]`}
+              className={`
+                relative group block rounded-3xl overflow-hidden bg-white
+                border border-gray-200 hover:border-cyan-400 shadow-md hover:shadow-xl
+                transform transition-all duration-500 hover:-translate-y-2 hover:scale-105
+                ${item.title === "Projeto em Construção" ? "opacity-90" : ""}
+              `}
             >
               {/* Glow border */}
               {!item.title.includes("Construção") && (
-                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-cyan-300 group-hover:shadow-[0_0_35px_rgba(34,211,238,0.3)] transition-all duration-700 pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-cyan-300 group-hover:shadow-[0_0_35px_rgba(34,211,238,0.4)] transition-all duration-700 pointer-events-none"></div>
               )}
 
-              {/* Video / Preview */}
-              <div className="flex items-center justify-center overflow-hidden h-52 sm:h-56 md:h-64 bg-gray-100">
+              {/* Preview */}
+              <div className="flex items-center justify-center overflow-hidden h-56 sm:h-60 md:h-64 bg-gray-100">
                 {item.video ? (
                   <video
                     src={item.video}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     autoPlay
                     muted
                     loop
@@ -114,23 +113,20 @@ const PortfolioSection: React.FC = () => {
               </div>
 
               {/* Overlay */}
-              <div
-                className={`absolute inset-0 rounded-2xl transition-all duration-500 pointer-events-none
-                ${item.title === "Projeto em Construção"
-                  ? "bg-yellow-50/60"
-                  : "bg-black/0 group-hover:bg-black/5"}`}
-              ></div>
+              <div className={`absolute inset-0 rounded-3xl transition-all duration-500 pointer-events-none
+                ${item.title === "Projeto em Construção" ? "bg-yellow-50/60" : "bg-black/0 group-hover:bg-black/5"}
+              `}></div>
 
-              {/* Content */}
+              {/* Card Content */}
               <div className="p-6 relative z-10">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:brightness-110 group-hover:animate-pulse transition-all duration-500">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:from-cyan-300 group-hover:to-purple-400 transition-all duration-500">
                     {item.title}
                   </h3>
                   <FaExternalLinkAlt className="text-gray-400 group-hover:text-cyan-400 transition-colors duration-300" />
                 </div>
 
-                <p className="text-gray-600 text-sm sm:text-base mb-2 leading-relaxed group-hover:text-gray-700 transition-colors duration-500">
+                <p className="text-gray-600 text-sm sm:text-base mb-3 leading-relaxed group-hover:text-gray-700 transition-colors duration-500">
                   {item.description}
                 </p>
                 <p className="text-gray-500 text-xs sm:text-sm mb-4 italic leading-snug">
@@ -140,10 +136,7 @@ const PortfolioSection: React.FC = () => {
                 {/* Icons */}
                 <div className="flex space-x-3 mb-4 flex-wrap">
                   {item.icons.map((icon, idx) => (
-                    <span
-                      key={idx}
-                      className="text-gray-400 group-hover:text-purple-400 text-xl transition-transform duration-300 group-hover:scale-110"
-                    >
+                    <span key={idx} className="text-gray-400 group-hover:text-purple-400 text-xl transition-transform duration-300 group-hover:scale-110">
                       {icon}
                     </span>
                   ))}
@@ -159,7 +152,7 @@ const PortfolioSection: React.FC = () => {
                       {frontendTechSorted.map((tech, idx) => (
                         <span
                           key={idx}
-                          className="bg-cyan-50/70 text-cyan-700 text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1 hover:bg-cyan-100 transition-all duration-300 shadow-sm"
+                          className="bg-cyan-50/80 text-cyan-700 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 hover:bg-cyan-100 hover:shadow-[0_0_8px_rgba(6,182,212,0.4)] transition-all duration-300"
                         >
                           {techIcons[tech] && <span className="text-sm">{techIcons[tech]}</span>}
                           {tech}
@@ -178,7 +171,7 @@ const PortfolioSection: React.FC = () => {
                       {backendTechSorted.map((tech, idx) => (
                         <span
                           key={idx}
-                          className="bg-gray-100/70 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1 hover:bg-gray-200 transition-all duration-300 shadow-sm"
+                          className="bg-gray-100/90 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 hover:bg-gray-200 hover:shadow-[0_0_8px_rgba(139,92,246,0.3)] transition-all duration-300"
                         >
                           {techIcons[tech] && <span className="text-sm">{techIcons[tech]}</span>}
                           {tech}
