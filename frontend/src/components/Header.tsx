@@ -14,8 +14,6 @@ import {
 
 /* =====================================================
    Estrutura de navegação
-   - Nome da seção, ícone e id do elemento
-   - Usado para scroll suave e destaque ativo
 ===================================================== */
 interface NavItem {
   name: string;
@@ -34,19 +32,12 @@ const navItems: NavItem[] = [
 
 /* =====================================================
    Componente Header
-   - Navegação fixa no topo com blur e shadow
-   - Destaque de seção ativa, scroll suave e menu mobile responsivo
 ===================================================== */
 const Header: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false); // Menu mobile aberto/fechado
-  const [scrolled, setScrolled] = useState(false); // Detecta scroll para sombra
-  const [activeSection, setActiveSection] = useState("home"); // Seção atualmente ativa
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  /* ---------------------
-      Efeito de scroll
-      - Adiciona sombra no header quando rola a página
-      - Detecta a seção ativa para destaque de navegação
-  --------------------- */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -54,7 +45,7 @@ const Header: React.FC = () => {
       navItems.forEach((item) => {
         const section = document.getElementById(item.sectionId);
         if (section) {
-          const top = section.offsetTop - 120; // Ajuste do offset
+          const top = section.offsetTop - 120;
           const bottom = top + section.offsetHeight;
           if (window.scrollY >= top && window.scrollY < bottom) {
             setActiveSection(item.sectionId);
@@ -67,13 +58,8 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* ---------------------
-      Função de scroll suave
-      - Ajusta o offset para header fixo
-      - Fecha menu mobile ao clicar
-  --------------------- */
   const handleNavClick = (sectionId: string) => {
-    const headerOffset = 80; // altura aproximada do header
+    const headerOffset = 80;
     if (sectionId === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -94,18 +80,15 @@ const Header: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center relative">
 
-        {/* ---------------------
+        {/* ========================
             Logo
-            - Ícone com animação hover
-            - Nome da marca com gradiente animado
-            - Descrição da função
-        --------------------- */}
+        ======================== */}
         <div className="flex flex-col">
           <div
             className="flex items-center group cursor-pointer"
             onClick={() => handleNavClick("home")}
           >
-            <FaCode className="text-cyan-400 text-3xl mr-2 transition-transform duration-500 ease-in-out group-hover:rotate-6 group-hover:scale-105" />
+            <FaCode className="text-cyan-400 text-3xl mr-2 transition-transform duration-500 ease-in-out group-hover:rotate-12 group-hover:scale-110" />
             <h1 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tracking-wide transition-all duration-500 group-hover:from-purple-500 group-hover:to-cyan-400 group-hover:scale-105">
               Studio M&D
             </h1>
@@ -115,10 +98,9 @@ const Header: React.FC = () => {
           </span>
         </div>
 
-        {/* ---------------------
+        {/* ========================
             Botão hamburguer mobile
-            - Alterna entre menu aberto/fechado
-        --------------------- */}
+        ======================== */}
         <div className="md:hidden mt-4 self-end">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -129,10 +111,9 @@ const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* ---------------------
+        {/* ========================
             Overlay mobile
-            - Fecha menu ao clicar fora
-        --------------------- */}
+        ======================== */}
         {menuOpen && (
           <div
             className="fixed inset-0 bg-black/30 z-40 md:hidden"
@@ -140,12 +121,9 @@ const Header: React.FC = () => {
           />
         )}
 
-        {/* ---------------------
+        {/* ========================
             Navegação principal
-            - Responsiva (desktop + mobile)
-            - Animação de entrada no mobile
-            - Destaque de seção ativa com borda e cores
-        --------------------- */}
+        ======================== */}
         <nav className="md:flex md:flex-row md:items-center md:space-x-8 w-full md:w-auto z-50 relative">
           <ul
             className={`
@@ -166,7 +144,8 @@ const Header: React.FC = () => {
               >
                 {/* Borda lateral animada */}
                 <span
-                  className={`absolute left-0 bottom-0 w-1 rounded-r-md bg-gradient-to-b from-cyan-400 to-purple-500 transition-all duration-500 ease-in-out md:block hidden
+                  className={`
+                    absolute left-0 bottom-0 w-1 rounded-r-md bg-gradient-to-b from-cyan-400 to-purple-500 transition-all duration-500 ease-in-out md:block hidden
                     ${activeSection === item.sectionId
                       ? "h-full opacity-100"
                       : "h-0 opacity-0 group-hover:h-full group-hover:opacity-100"
@@ -175,18 +154,24 @@ const Header: React.FC = () => {
 
                 {/* Ícone da seção */}
                 <span
-                  className={`text-lg sm:text-xl transition-colors duration-300
-                    ${activeSection === item.sectionId ? "text-purple-neon" : "text-cyan-neon"} 
-                    group-hover:text-purple-neon`}
+                  className={`
+                    text-lg sm:text-xl transition-all duration-500
+                    ${activeSection === item.sectionId
+                      ? "text-purple-500 drop-shadow-[0_0_10px_rgba(139,92,246,0.7)]"
+                      : "text-cyan-400 group-hover:text-purple-500 group-hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]"
+                    }
+                  `}
                 >
                   {item.icon}
                 </span>
 
                 {/* Nome da seção */}
                 <span
-                  className={`transition-all duration-500 bg-clip-text text-transparent bg-gradient-to-r from-cyan-neon to-purple-neon
-                    ${activeSection === item.sectionId ? "font-bold" : ""}
-                    group-hover:from-purple-neon group-hover:to-cyan-neon`}
+                  className={`
+                    transition-all duration-500 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500
+                    ${activeSection === item.sectionId ? "font-bold" : "font-medium"}
+                    group-hover:from-purple-500 group-hover:to-cyan-400
+                  `}
                 >
                   {item.name}
                 </span>

@@ -61,19 +61,25 @@ const portfolioItems = [
 
 const PortfolioSection: React.FC = () => {
   return (
-    <section id="portfolio" className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-100">
+    <section
+      id="portfolio"
+      className="relative py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 overflow-hidden"
+    >
+      {/* Background subtle pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.06),transparent_70%)]"></div>
+
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tracking-tight">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-500 animate-gradient-x">
           Meu Portfólio
         </h2>
-        <p className="mt-3 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
+        <p className="mt-4 text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
           Alguns dos meus projetos recentes de desenvolvimento web
         </p>
       </div>
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {portfolioItems.map((item, index) => {
           const frontendTechSorted = [...item.frontendTechnologies].sort((a, b) => a.localeCompare(b));
           const backendTechSorted = [...item.backendTechnologies].sort((a, b) => a.localeCompare(b));
@@ -84,19 +90,14 @@ const PortfolioSection: React.FC = () => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`
-                relative group block rounded-2xl overflow-hidden bg-white
-                border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg
-                transform transition-all duration-500 hover:-translate-y-1
-                ${item.title === "Projeto em Construção" ? "opacity-90" : ""}
-              `}
+              className={`relative group block rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm border border-gray-200/70 hover:border-cyan-400 shadow-sm hover:shadow-xl transform transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:scale-[1.02]`}
             >
-              {/* Neon border (subtle glow) */}
+              {/* Glow border */}
               {!item.title.includes("Construção") && (
-                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-cyan-300 group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition-all duration-700 pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-cyan-300 group-hover:shadow-[0_0_35px_rgba(34,211,238,0.3)] transition-all duration-700 pointer-events-none"></div>
               )}
 
-              {/* Preview (video or icon) */}
+              {/* Video / Preview */}
               <div className="flex items-center justify-center overflow-hidden h-52 sm:h-56 md:h-64 bg-gray-100">
                 {item.video ? (
                   <video
@@ -112,15 +113,18 @@ const PortfolioSection: React.FC = () => {
                 )}
               </div>
 
-              {/* Overlay hover */}
-              <div className={`absolute inset-0 rounded-2xl transition-all duration-500 pointer-events-none
-                ${item.title === "Projeto em Construção" ? "bg-yellow-50/60" : "bg-black/0 group-hover:bg-black/5"}
-              `}></div>
+              {/* Overlay */}
+              <div
+                className={`absolute inset-0 rounded-2xl transition-all duration-500 pointer-events-none
+                ${item.title === "Projeto em Construção"
+                  ? "bg-yellow-50/60"
+                  : "bg-black/0 group-hover:bg-black/5"}`}
+              ></div>
 
-              {/* Card Content */}
-              <div className="p-5 sm:p-6 relative z-10">
+              {/* Content */}
+              <div className="p-6 relative z-10">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:from-cyan-300 group-hover:to-purple-400 transition-all duration-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:brightness-110 group-hover:animate-pulse transition-all duration-500">
                     {item.title}
                   </h3>
                   <FaExternalLinkAlt className="text-gray-400 group-hover:text-cyan-400 transition-colors duration-300" />
@@ -129,14 +133,17 @@ const PortfolioSection: React.FC = () => {
                 <p className="text-gray-600 text-sm sm:text-base mb-2 leading-relaxed group-hover:text-gray-700 transition-colors duration-500">
                   {item.description}
                 </p>
-                <p className="text-gray-500 text-xs sm:text-sm mb-3 italic leading-snug">
+                <p className="text-gray-500 text-xs sm:text-sm mb-4 italic leading-snug">
                   {item.scope}
                 </p>
 
                 {/* Icons */}
-                <div className="flex space-x-3 mb-3 flex-wrap">
+                <div className="flex space-x-3 mb-4 flex-wrap">
                   {item.icons.map((icon, idx) => (
-                    <span key={idx} className="text-gray-400 group-hover:text-purple-400 text-xl transition-transform duration-300 group-hover:scale-110">
+                    <span
+                      key={idx}
+                      className="text-gray-400 group-hover:text-purple-400 text-xl transition-transform duration-300 group-hover:scale-110"
+                    >
                       {icon}
                     </span>
                   ))}
@@ -152,7 +159,7 @@ const PortfolioSection: React.FC = () => {
                       {frontendTechSorted.map((tech, idx) => (
                         <span
                           key={idx}
-                          className="bg-cyan-50 text-cyan-700 text-xs font-medium px-2 py-1 rounded-md flex items-center gap-1 hover:bg-cyan-100 transition-all duration-300"
+                          className="bg-cyan-50/70 text-cyan-700 text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1 hover:bg-cyan-100 transition-all duration-300 shadow-sm"
                         >
                           {techIcons[tech] && <span className="text-sm">{techIcons[tech]}</span>}
                           {tech}
@@ -171,7 +178,7 @@ const PortfolioSection: React.FC = () => {
                       {backendTechSorted.map((tech, idx) => (
                         <span
                           key={idx}
-                          className="bg-gray-100 text-gray-700 text-xs font-medium px-2 py-1 rounded-md flex items-center gap-1 hover:bg-gray-200 transition-all duration-300"
+                          className="bg-gray-100/70 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1 hover:bg-gray-200 transition-all duration-300 shadow-sm"
                         >
                           {techIcons[tech] && <span className="text-sm">{techIcons[tech]}</span>}
                           {tech}
@@ -182,7 +189,7 @@ const PortfolioSection: React.FC = () => {
                 )}
 
                 {/* Links */}
-                <div className="flex space-x-4 mt-4">
+                <div className="flex space-x-4 mt-5">
                   {item.title === "Sistema de Inventário - Caixa Econômica" ? (
                     <>
                       <span className="flex items-center gap-1 text-gray-400 text-xs font-semibold">
