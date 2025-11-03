@@ -2,79 +2,76 @@
 import React, { JSX } from "react";
 import { FaEnvelope, FaWhatsapp, FaLinkedin, FaGithub } from "react-icons/fa";
 
-/* =====================================================
-   Lista de contatos
-   - Cada item possui nome, ícone, link e cor
-   - Descrição opcional usada como tooltip
-   - Mantém consistência visual e UX para cada plataforma
-===================================================== */
-const contactList: { 
-  name: string; 
-  icon: JSX.Element; 
-  link: string; 
-  color?: string; 
-  description?: string 
+/* ============================================================
+   LISTA DE CONTATOS
+   - Ícone, nome, link e descrição (tooltip)
+   - Paleta consistente com a identidade visual global
+============================================================ */
+const contactList: {
+  name: string;
+  icon: JSX.Element;
+  link: string;
+  color?: string;
+  description?: string;
 }[] = [
-  { 
-    name: "Gmail", 
-    icon: <FaEnvelope />, 
-    link: "mailto:matheus.diamantino20@gmail.com", 
+  {
+    name: "Gmail",
+    icon: <FaEnvelope />,
+    link: "mailto:matheus.diamantino20@gmail.com",
     color: "#D44638",
-    description: "Envie um e-mail para iniciar uma conversa profissional"
+    description: "Envie um e-mail para iniciar uma conversa profissional.",
   },
-  { 
-    name: "WhatsApp", 
-    icon: <FaWhatsapp />, 
-    link: "https://wa.me/+5561999745671", 
+  {
+    name: "WhatsApp",
+    icon: <FaWhatsapp />,
+    link: "https://wa.me/+5561999745671",
     color: "#25D366",
-    description: "Converse diretamente comigo pelo WhatsApp"
+    description: "Converse diretamente comigo pelo WhatsApp.",
   },
-  { 
-    name: "LinkedIn", 
-    icon: <FaLinkedin />, 
-    link: "https://www.linkedin.com/in/matheus-diamantino-952b3121a/", 
+  {
+    name: "LinkedIn",
+    icon: <FaLinkedin />,
+    link: "https://www.linkedin.com/in/matheus-diamantino-952b3121a/",
     color: "#0077B5",
-    description: "Conecte-se comigo e acompanhe meu networking profissional"
+    description: "Conecte-se comigo e acompanhe meu networking profissional.",
   },
-  { 
-    name: "GitHub", 
-    icon: <FaGithub />, 
-    link: "https://github.com/Henri-Di", 
+  {
+    name: "GitHub",
+    icon: <FaGithub />,
+    link: "https://github.com/Henri-Di",
     color: "#181717",
-    description: "Veja meus projetos e contribuições em código aberto"
+    description: "Explore meus projetos e contribuições open-source.",
   },
 ];
 
-/* =====================================================
-   Componente ContactSection
-   - Exibe opções de contato com cards interativos
-   - Hover com animações, tooltips e transformações
-   - Call-to-action no final para engajar o usuário
-===================================================== */
+/* ============================================================
+   COMPONENTE: ContactSection
+   - Cartões interativos e animados
+   - Hover fluido com brilho e sombra ciano-roxa
+   - Tooltip acessível e elegante
+============================================================ */
 const ContactSection: React.FC = () => {
   return (
-    <section id="contact" className="py-16 sm:py-20 bg-gray-50 relative">
-      
-      {/* ---------------------
-          Header da seção
-          - Título com gradiente para destaque
-          - Descrição contextualizando o contato
-      --------------------- */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+    <section
+      id="contact"
+      className="relative py-16 sm:py-20 bg-gray-50 overflow-hidden"
+    >
+      {/* ===================== */}
+      {/* Cabeçalho da seção */}
+      {/* ===================== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-14">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
           Contato
         </h2>
-        <p className="mt-2 text-gray-600 text-sm sm:text-base">
-          Entre em contato comigo através das plataformas abaixo para projetos, parcerias ou dúvidas.
+        <p className="mt-3 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          Quer discutir um projeto, parceria ou oportunidade? Entre em contato
+          por qualquer uma das plataformas abaixo.
         </p>
       </div>
 
-      {/* ---------------------
-          Cards de contato
-          - Flex wrap e gap para responsividade
-          - Hover: elevação, escala, rotação e sombra
-          - Tooltip com descrição da plataforma
-      --------------------- */}
+      {/* ===================== */}
+      {/* Grid de Contatos */}
+      {/* ===================== */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center gap-6 sm:gap-8">
         {contactList.map((contact, idx) => (
           <a
@@ -83,15 +80,18 @@ const ContactSection: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className={`
-              relative group flex flex-col items-center justify-center p-6 bg-white rounded-2xl
-              shadow-lg transition-all duration-500 transform
+              group relative flex flex-col items-center justify-center p-6 bg-white rounded-2xl
+              shadow-md transition-all duration-500 transform
               hover:-translate-y-2 hover:scale-110 hover:rotate-1
-              hover:shadow-[0_10px_25px_rgba(0,0,0,0.2),0_0_20px_rgba(6,182,212,0.5)]
+              hover:shadow-[0_0_20px_rgba(6,182,212,0.6),0_0_35px_rgba(139,92,246,0.5)]
+              opacity-0 animate-fadeInUp
             `}
+            style={{ animationDelay: `${idx * 0.1}s` }}
+            aria-label={contact.name}
           >
-            {/* Ícone do contato */}
+            {/* Ícone principal */}
             <div
-              className="text-4xl sm:text-5xl mb-2 transition-all duration-500 group-hover:drop-shadow-[0_0_20px_rgb(6,182,212)] group-hover:animate-pulse"
+              className="text-4xl sm:text-5xl mb-2 transition-all duration-500 group-hover:drop-shadow-[0_0_25px_rgb(34,211,238)] group-hover:animate-pulse"
               style={{ color: contact.color }}
             >
               {contact.icon}
@@ -102,9 +102,14 @@ const ContactSection: React.FC = () => {
               {contact.name}
             </span>
 
-            {/* Tooltip / descrição */}
+            {/* Tooltip descritivo */}
             {contact.description && (
-              <span className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 px-3 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center w-max max-w-[200px]">
+              <span
+                className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
+                px-3 py-1 bg-gray-900 text-white text-xs rounded-lg shadow-lg
+                opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap
+                transition-opacity duration-300 z-10"
+              >
                 {contact.description}
               </span>
             )}
@@ -112,15 +117,25 @@ const ContactSection: React.FC = () => {
         ))}
       </div>
 
-      {/* ---------------------
-          Call-to-action final
-          - Incentiva a interação e contato
-          - Destaque visual na frase-chave
-      --------------------- */}
-      <div className="mt-12 text-center">
-        <p className="text-gray-600 text-sm sm:text-base">
-          Estou sempre aberto a novas ideias e oportunidades. <span className="text-cyan-500 font-semibold">Vamos conversar!</span>
+      {/* ===================== */}
+      {/* Call to Action final */}
+      {/* ===================== */}
+      <div className="mt-14 text-center">
+        <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          Estou sempre aberto a novas ideias e desafios.
+          <br />
+          <span className="text-cyan-500 font-semibold">
+            Vamos construir algo incrível juntos?
+          </span>
         </p>
+      </div>
+
+      {/* ===================== */}
+      {/* Efeito de fundo líquido */}
+      {/* ===================== */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute w-[300px] h-[300px] bg-cyan-300/30 rounded-full blur-3xl animate-pulse top-10 left-10" />
+        <div className="absolute w-[400px] h-[400px] bg-purple-300/30 rounded-full blur-3xl animate-[pulse_8s_ease-in-out_infinite] bottom-0 right-0" />
       </div>
     </section>
   );
