@@ -8,10 +8,10 @@ import { FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope } from "react-icons/fa";
    - Hover com animação e glow para melhor UX
 ===================================================== */
 const socialLinks = [
-  { name: "GitHub", icon: <FaGithub />, link: "https://github.com/seugithub", color: "#181717" },
-  { name: "LinkedIn", icon: <FaLinkedin />, link: "https://www.linkedin.com/in/seulinkedin", color: "#0077B5" },
-  { name: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/seunumero", color: "#25D366" },
-  { name: "Gmail", icon: <FaEnvelope />, link: "mailto:seuemail@gmail.com", color: "#D44638" },
+  { name: "GitHub", icon: <FaGithub />, link: "https://github.com/Henri-Di", color: "#181717" },
+  { name: "LinkedIn", icon: <FaLinkedin />, link: "https://www.linkedin.com/in/matheus-diamantino-952b3121a/", color: "#0077B5" },
+  { name: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/+5561999745671", color: "#25D366" },
+  { name: "Gmail", icon: <FaEnvelope />, link: "mailto:matheus.diamantino20@gmail.com", color: "#D44638" },
 ];
 
 /* =====================================================
